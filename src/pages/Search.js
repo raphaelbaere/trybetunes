@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CardMusic from '../components/CardMusic';
+import CardAlbum from '../components/CardAlbum';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
@@ -48,7 +48,7 @@ export default class Search extends Component {
 
   showAlbums = (albums) => {
     const allAlbums = albums.map((album) => (
-      <CardMusic
+      <CardAlbum
         key={ album.collectionId }
         musicObject={ album }
       />));

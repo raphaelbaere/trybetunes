@@ -1,25 +1,22 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 export default class CardMusic extends Component {
   render() {
     const { musicObject } = this.props;
     return (
       <div>
-        <img
-          src={ musicObject.artworkUrl100 }
-          alt={ `${musicObject.collectionName} artwork` }
-        />
-        <p>{ musicObject.collectionName }</p>
-        <p>{ musicObject.artistName }</p>
-        <Link
-          data-testid={ `link-to-album-${musicObject.collectionId}` }
-          to={ `album/${musicObject.collectionId}` }
-        >
-          Ver album
-
-        </Link>
+        <p>{musicObject.trackName}</p>
+        {musicObject.previewUrl && (
+          <audio data-testid="audio-component" src={ musicObject.previewUrl } controls>
+            <track kind="captions" />
+            O seu navegador não suporta o elemento
+            {' '}
+            {' '}
+            <code>audio</code>
+            .
+          </audio>
+        )}
       </div>
     );
   }
@@ -27,9 +24,7 @@ export default class CardMusic extends Component {
 
 CardMusic.propTypes = {
   musicObject: PropTypes.shape({
-    artistName: PropTypes.string.isRequired,
-    artworkUrl100: PropTypes.string.isRequired,
-    collectionId: PropTypes.number.isRequired,
-    collectionName: PropTypes.string.isRequired,
+    trackName: PropTypes.string,
+    previewUrl: PropTypes.string,
   }).isRequired,
 };
