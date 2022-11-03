@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
-import Loading from './pages/Loading';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Profile from './pages/Profile';
@@ -45,7 +44,10 @@ class App extends React.Component {
     await createUser({
       name: loginNameInput,
     });
-    this.setState({ loading: false, redirect: true });
+    this.setState({
+      loading: false,
+      redirect: true,
+    });
   };
 
   render() {
@@ -64,9 +66,13 @@ class App extends React.Component {
               redirect={ redirect }
             />
           </Route>
-          <Route path="/loading"><Loading /></Route>
           <Route path="/search"><Search /></Route>
-          <Route path="/album/:id" render={ (props) => <Album { ...props } /> } />
+          <Route
+            path="/album/:id"
+            render={ (props) => (<Album
+              { ...props }
+            />) }
+          />
           <Route path="/favorites"><Favorites /></Route>
           <Route exact path="/profile"><Profile /></Route>
           <Route path="/profile/edit"><ProfileEdit /></Route>
