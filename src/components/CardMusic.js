@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { addSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
+import { addSong } from '../services/favoriteSongsAPI';
 
 export default class CardMusic extends Component {
   state = {
@@ -41,9 +41,9 @@ export default class CardMusic extends Component {
                 onChange={ this.addSongsToFavorites }
               />
             </label>
-            {loading && <Loading />}
           </div>
         )}
+        {loading && <Loading />}
       </div>
     );
   }

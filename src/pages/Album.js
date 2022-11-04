@@ -26,7 +26,6 @@ export default class Album extends Component {
   showMusics = (musics) => {
     const allMusics = musics.map((music, index) => (
       <CardMusic
-        index={ index }
         key={ index }
         musicObject={ music }
       />));
