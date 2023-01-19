@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Loading from './Loading';
 import { addSong } from '../services/favoriteSongsAPI';
+import { Card } from '@mui/material';
 
 export default class CardMusic extends Component {
   state = {
@@ -19,11 +20,11 @@ export default class CardMusic extends Component {
     const { musicObject } = this.props;
     const { loading } = this.state;
     return (
-      <div>
-        <p>{musicObject.trackName}</p>
-        <p>{musicObject.trackId}</p>
+      <Card variant="outlined" sx={ { display: 'flex', flexDirection: 'column' } }>
         {musicObject.previewUrl && (
-          <div>
+          <div className="eachMusic">
+            <p>{musicObject.trackName}</p>
+            <p>{musicObject.trackId}</p>
             <audio data-testid="audio-component" src={ musicObject.previewUrl } controls>
               <track kind="captions" />
               O seu navegador não suporta o elemento
@@ -44,7 +45,7 @@ export default class CardMusic extends Component {
           </div>
         )}
         {loading && <Loading />}
-      </div>
+      </Card>
     );
   }
 }

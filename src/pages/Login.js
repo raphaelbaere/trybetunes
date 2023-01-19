@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import Header from '../components/Header';
 import Loading from '../components/Loading';
+import SignIn from '../components/LoginPage';
+import ResponsiveAppBarLogin from '../components/ResponsiveAppBarLogin';
 
 export default class Login extends Component {
   render() {
@@ -15,28 +18,14 @@ export default class Login extends Component {
       redirect } = this.props;
     return (
       <div data-testid="page-login">
+        <ResponsiveAppBarLogin />
         { loading ? <Loading /> : (
-          <form onSubmit={ onFormSubmit }>
-            <label htmlFor="login-name-input">
-              Nome
-              <input
-                id="login-name-input"
-                data-testid="login-name-input"
-                type="text"
-                name="loginNameInput"
-                value={ loginNameInput }
-                onChange={ onInputChange }
-              />
-            </label>
-            <button
-              disabled={ isLoginButtonDisabled }
-              onClick={ onEnterLoginClick }
-              type="button"
-              data-testid="login-submit-button"
-            >
-              Entrar
-            </button>
-          </form>)}
+          <SignIn
+            onInputChange={ onInputChange }
+            isLoginButtonDisabled={ isLoginButtonDisabled }
+            loginNameInput={ loginNameInput }
+            onEnterLoginClick={ onEnterLoginClick }
+          />)}
         { redirect && <Redirect to="/search" />}
       </div>
     );

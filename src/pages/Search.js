@@ -1,3 +1,4 @@
+import { Button, TextField } from '@mui/material';
 import React, { Component } from 'react';
 import CardAlbum from '../components/CardAlbum';
 import Header from '../components/Header';
@@ -64,38 +65,47 @@ export default class Search extends Component {
       <div data-testid="page-search">
         <Header />
         {loading && loadingApi === false ? <Loading /> : (
-          <form onSubmit={ (event) => event.preventDefault() }>
-            <label htmlFor="searchArtistInput">
-              Search for artists
-              <input
-                data-testid="search-artist-input"
-                type="text"
-                name="searchArtistInput"
-                value={ searchArtistInput }
-                onChange={ this.onInputChange }
-                id="searchArtistInput"
-              />
-            </label>
-            <button
+          <form
+            className="search-form"
+            onSubmit={ (event) => event.preventDefault() }
+          >
+            <TextField
+              id="searchArtistInput"
+              label="Search for album or artist"
+              variant="outlined"
+              data-testid="search-artist-input"
+              type="text"
+              name="searchArtistInput"
+              value={ searchArtistInput }
+              onChange={ this.onInputChange }
+            />
+            <Button
+              sx={ { marginLeft: 0.5 } }
+              color="success"
+              variant="contained"
               type="button"
               data-testid="search-artist-button"
               disabled={ isSearchArtistButtonDisabled }
               onClick={ this.onSearchArtistButtonClick }
             >
               Pesquisar
-            </button>
+            </Button>
           </form>
         )}
         {loadingApi ? '' : (
           <div>
             {albums.length > 1 ? (
               <div>
-                <p>
+                <p className="search-results">
                   Resultado de álbuns de:
                   {' '}
-                  {searchedArtist}
+                  <span className="searched-artist">
+                    {searchedArtist}
+                  </span>
                 </p>
-                {this.showAlbums(albums)}
+                <div className="albums">
+                  {this.showAlbums(albums)}
+                </div>
               </div>) : <p>Nenhum álbum foi encontrado</p>}
           </div>
         )}

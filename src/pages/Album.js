@@ -1,3 +1,4 @@
+import { Card } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import CardMusic from '../components/CardMusic';
@@ -38,18 +39,21 @@ export default class Album extends Component {
       <div data-testid="page-album">
         <Header />
         {loading ? <Loading /> : (
-          <div>
+          <div className="musics-div">
             {musics.length === 0 ? <Loading /> : (
-              <div>
-                <p data-testid="artist-name">
-                  Artista:
-                  {musics[0].artistName}
-                </p>
-                <p data-testid="album-name">
-                  Album:
-                  {musics[0].collectionName}
-                </p>
-                {this.showMusics(musics)}
+              <div className="musics-div2">
+                <div className="album-info-div">
+                  <img className="collectionArt" src={`${musics[0].artworkUrl100}`} alt={`${musics[0].collectionName}`} />
+                  <p className="artistNameAlbum" data-testid="artist-name">
+                    {musics[0].artistName}
+                  </p>
+                  <p className="artistNameAlbum" data-testid="album-name">
+                    {musics[0].collectionName}
+                  </p>
+                </div>
+                <div className="musics-div3">
+                  {this.showMusics(musics)}
+                </div>
               </div>
             )}
           </div>
