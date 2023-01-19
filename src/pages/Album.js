@@ -12,7 +12,7 @@ export default class Album extends Component {
     loading: true,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.musicRequisition();
   }
 
@@ -25,8 +25,9 @@ export default class Album extends Component {
   };
 
   showMusics = (musics) => {
-    const allMusics = musics.map((music, index) => (
+    const allMusics = musics.slice(1).map((music, index) => (
       <CardMusic
+        trackId={ music.trackId }
         key={ index }
         musicObject={ music }
       />));

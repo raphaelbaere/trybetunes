@@ -11,6 +11,9 @@ export default class Login extends Component {
     const {
       onEnterLoginClick,
       loginNameInput,
+      loginEmailInput,
+      loginImageInput,
+      loginDescInput,
       isLoginButtonDisabled,
       onInputChange,
       loading,
@@ -20,12 +23,66 @@ export default class Login extends Component {
       <div data-testid="page-login">
         <ResponsiveAppBarLogin />
         { loading ? <Loading /> : (
+<<<<<<< HEAD
           <SignIn
             onInputChange={ onInputChange }
             isLoginButtonDisabled={ isLoginButtonDisabled }
             loginNameInput={ loginNameInput }
             onEnterLoginClick={ onEnterLoginClick }
           />)}
+=======
+          <form onSubmit={ onFormSubmit }>
+            <label htmlFor="login-name-input">
+              Nome
+              <input
+                id="login-name-input"
+                data-testid="login-name-input"
+                type="text"
+                name="loginNameInput"
+                value={ loginNameInput }
+                onChange={ onInputChange }
+              />
+            </label>
+            <label htmlFor="login-email-input">
+              Email
+              <input
+                id="login-email-input"
+                type="text"
+                name="loginEmailInput"
+                value={ loginEmailInput }
+                onChange={ onInputChange }
+              />
+            </label>
+            <label htmlFor="login-desc-input">
+              Descrição
+              <textarea
+                id="login-desc-input"
+                name="loginDescInput"
+                value={ loginDescInput }
+                onChange={ onInputChange }
+              />
+              <label htmlFor="login-image-input">
+                Imagem
+                <input
+                  id="login-image-input"
+                  data-testid="login-image-input"
+                  type="text"
+                  name="loginImageInput"
+                  value={ loginImageInput }
+                  onChange={ onInputChange }
+                />
+              </label>
+            </label>
+            <button
+              disabled={ isLoginButtonDisabled }
+              onClick={ onEnterLoginClick }
+              type="button"
+              data-testid="login-submit-button"
+            >
+              Entrar
+            </button>
+          </form>)}
+>>>>>>> 3b5261948a28fd742be1e99a7d753b383cf11e7c
         { redirect && <Redirect to="/search" />}
       </div>
     );
@@ -35,6 +92,9 @@ export default class Login extends Component {
 Login.propTypes = {
   isLoginButtonDisabled: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
+  loginDescInput: PropTypes.string.isRequired,
+  loginEmailInput: PropTypes.string.isRequired,
+  loginImageInput: PropTypes.string.isRequired,
   loginNameInput: PropTypes.string.isRequired,
   onEnterLoginClick: PropTypes.func.isRequired,
   onFormSubmit: PropTypes.func.isRequired,

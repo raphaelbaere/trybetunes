@@ -12,6 +12,9 @@ import { createUser } from './services/userAPI';
 class App extends React.Component {
   state = {
     loginNameInput: '',
+    loginEmailInput: '',
+    loginDescInput: '',
+    loginImageInput: '',
     isLoginButtonDisabled: true,
     loading: false,
     redirect: false,
@@ -39,10 +42,14 @@ class App extends React.Component {
   };
 
   onEnterLoginClick = async () => {
-    const { loginNameInput } = this.state;
+    const { loginNameInput, loginEmailInput, loginImageInput,
+      loginDescInput } = this.state;
     this.setState({ loading: true });
     await createUser({
       name: loginNameInput,
+      email: loginEmailInput,
+      image: loginImageInput,
+      description: loginDescInput,
     });
     this.setState({
       loading: false,
@@ -51,13 +58,19 @@ class App extends React.Component {
   };
 
   render() {
-    const { loginNameInput, isLoginButtonDisabled, loading, redirect } = this.state;
+    const { loginNameInput,
+      loginEmailInput,
+      loginDescInput,
+      loginImageInput, isLoginButtonDisabled, loading, redirect } = this.state;
     return (
       <div className="app">
         <Switch>
           <Route exact path="/">
             <Login
               loginNameInput={ loginNameInput }
+              loginEmailInput={ loginEmailInput }
+              loginDescInput={ loginDescInput }
+              loginImageInput={ loginImageInput }
               isLoginButtonDisabled={ isLoginButtonDisabled }
               onEnterLoginClick={ this.onEnterLoginClick }
               onInputChange={ this.onInputChange }

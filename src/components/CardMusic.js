@@ -1,26 +1,56 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Loading from './Loading';
+<<<<<<< HEAD
 import { addSong } from '../services/favoriteSongsAPI';
 import { Card } from '@mui/material';
+=======
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+>>>>>>> 3b5261948a28fd742be1e99a7d753b383cf11e7c
 
 export default class CardMusic extends Component {
   state = {
     loading: false,
+    isFavorite: false,
   };
 
-  addSongsToFavorites = async (event) => {
-    const trackId = event.target.parentNode.parentNode.children[1].innerHTML;
-    this.setState({ loading: true });
-    await addSong(trackId);
-    this.setState({ loading: false });
+  async componentDidMount() {
+    const { trackId } = this.props;
+    const favoriteSongs = await getFavoriteSongs();
+    favoriteSongs.forEach((song) => {
+      if (+song.trackId === trackId) {
+        this.setState({ isFavorite: true });
+      }
+    });
+  }
+
+  handleFavorites = async ({ target }) => {
+    const { onFavoriteSongRemove } = this.props;
+    const { musicObject } = this.props;
+    const { name, checked } = target;
+    this.setState({ loading: true, [name]: checked });
+    let result = '';
+    if (checked) {
+      result = await addSong(musicObject);
+    } else {
+      result = await removeSong(musicObject);
+      onFavoriteSongRemove(musicObject.trackId);
+    }
+    if (result) {
+      this.setState({ loading: false, [name]: checked });
+    }
   };
 
   render() {
-    const { musicObject } = this.props;
-    const { loading } = this.state;
+    const { musicObject, trackId } = this.props;
+    const { loading, isFavorite } = this.state;
     return (
+<<<<<<< HEAD
       <Card variant="outlined" sx={ { display: 'flex', flexDirection: 'column' } }>
+=======
+      <div>
+        <p>{musicObject.trackName}</p>
+>>>>>>> 3b5261948a28fd742be1e99a7d753b383cf11e7c
         {musicObject.previewUrl && (
           <div className="eachMusic">
             <p>{musicObject.trackName}</p>
@@ -33,13 +63,15 @@ export default class CardMusic extends Component {
               <code>audio</code>
               .
             </audio>
-            <label htmlFor="favorite-music">
+            <label htmlFor={ `${trackId}` }>
               Favorita
               <input
-                id="favorite-music"
+                id={ trackId }
                 type="checkbox"
-                data-testid={ `checkbox-music-${musicObject.trackId}` }
-                onChange={ this.addSongsToFavorites }
+                name="isFavorite"
+                data-testid={ `checkbox-music-${trackId}` }
+                onChange={ this.handleFavorites }
+                checked={ isFavorite }
               />
             </label>
           </div>
@@ -56,4 +88,11 @@ CardMusic.propTypes = {
     trackId: PropTypes.number,
     trackName: PropTypes.string,
   }).isRequired,
+  onFavoriteSongRemove: PropTypes.func,
+  trackId: PropTypes.number,
+};
+
+CardMusic.defaultProps = {
+  trackId: 0,
+  onFavoriteSongRemove: () => { console.log('removeu'); },
 };
