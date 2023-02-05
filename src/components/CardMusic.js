@@ -41,12 +41,9 @@ export default class CardMusic extends Component {
     const { musicObject, trackId } = this.props;
     const { loading, isFavorite } = this.state;
     return (
-<<<<<<< HEAD
       <Card variant="outlined" sx={ { display: 'flex', flexDirection: 'column' } }>
-=======
       <div>
         <p>{musicObject.trackName}</p>
->>>>>>> 3b5261948a28fd742be1e99a7d753b383cf11e7c
         {musicObject.previewUrl && (
           <div className="eachMusic">
             <p>{musicObject.trackName}</p>
