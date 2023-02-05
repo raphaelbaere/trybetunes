@@ -1,12 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Loading from './Loading';
-<<<<<<< HEAD
-import { addSong } from '../services/favoriteSongsAPI';
 import { Card } from '@mui/material';
-=======
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
->>>>>>> 3b5261948a28fd742be1e99a7d753b383cf11e7c
 
 export default class CardMusic extends Component {
   state = {
