@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Loading from './Loading';
 import { Card } from '@mui/material';
+import Loading from './Loading';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 export default class CardMusic extends Component {
@@ -42,33 +42,38 @@ export default class CardMusic extends Component {
     const { loading, isFavorite } = this.state;
     return (
       <Card variant="outlined" sx={ { display: 'flex', flexDirection: 'column' } }>
-      <div>
-        <p>{musicObject.trackName}</p>
-        {musicObject.previewUrl && (
-          <div className="eachMusic">
-            <p>{musicObject.trackName}</p>
-            <p>{musicObject.trackId}</p>
-            <audio data-testid="audio-component" src={ musicObject.previewUrl } controls>
-              <track kind="captions" />
-              O seu navegador não suporta o elemento
-              {' '}
-              {' '}
-              <code>audio</code>
-              .
-            </audio>
-            <label htmlFor={ `${trackId}` }>
-              Favorita
-              <input
-                id={ trackId }
-                type="checkbox"
-                name="isFavorite"
-                data-testid={ `checkbox-music-${trackId}` }
-                onChange={ this.handleFavorites }
-                checked={ isFavorite }
-              />
-            </label>
-          </div>
-        )}
+        <div>
+          <p>{musicObject.trackName}</p>
+          {musicObject.previewUrl && (
+            <div className="eachMusic">
+              <p>{musicObject.trackName}</p>
+              <p>{musicObject.trackId}</p>
+              <audio
+                data-testid="audio-component"
+                src={ musicObject.previewUrl }
+                controls
+              >
+                <track kind="captions" />
+                O seu navegador não suporta o elemento
+                {' '}
+                {' '}
+                <code>audio</code>
+                .
+              </audio>
+              <label htmlFor={ `${trackId}` }>
+                Favorita
+                <input
+                  id={ trackId }
+                  type="checkbox"
+                  name="isFavorite"
+                  data-testid={ `checkbox-music-${trackId}` }
+                  onChange={ this.handleFavorites }
+                  checked={ isFavorite }
+                />
+              </label>
+            </div>
+          )}
+        </div>
         {loading && <Loading />}
       </Card>
     );

@@ -1,4 +1,3 @@
-import { Card } from '@mui/material';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import CardMusic from '../components/CardMusic';
@@ -44,7 +43,11 @@ export default class Album extends Component {
             {musics.length === 0 ? <Loading /> : (
               <div className="musics-div2">
                 <div className="album-info-div">
-                  <img className="collectionArt" src={`${musics[0].artworkUrl100}`} alt={`${musics[0].collectionName}`} />
+                  <img
+                    className="collectionArt"
+                    src={ `${musics[0].artworkUrl100}` }
+                    alt={ `${musics[0].collectionName}` }
+                  />
                   <p className="artistNameAlbum" data-testid="artist-name">
                     {musics[0].artistName}
                   </p>

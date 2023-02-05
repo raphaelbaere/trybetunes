@@ -1,5 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-max-depth */
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/prop-types */
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -8,7 +12,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
@@ -29,7 +32,8 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn({ loginNameInput, onInputChange, isLoginButtonDisabled, onEnterLoginClick }) {
+export default function SignIn({ loginNameInput, onInputChange,
+  isLoginButtonDisabled, onEnterLoginClick }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,8 +56,8 @@ export default function SignIn({ loginNameInput, onInputChange, isLoginButtonDis
           } }
         >
           <div className="logo">
-          <img src={ trybelogo } alt="logo" className="trybe-logo" />
-          <p className="logo-name">Trybify</p>
+            <img src={ trybelogo } alt="logo" className="trybe-logo" />
+            <p className="logo-name">Trybify</p>
           </div>
           <Typography component="h1" variant="h5">
             Sign in

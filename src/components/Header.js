@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import ResponsiveAppBar from './HeaderPage';
-import Loading from './Loading';
 
 export default class Header extends Component {
   state = {
